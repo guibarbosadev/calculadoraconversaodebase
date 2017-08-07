@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="author" content="Guilherme Barbosa Pereira">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Calculadora Conversão de Bases</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="https://fonts.google.com/specimen/Lato" type="text/css">
+		<link rel="stylesheet" href="https://fonts.google.com/specimen/Roboto">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:400,300,700,900">
+		
+		<script type="text/javascript" charset="utf-8" src="calcular.js"></script>
+		<script type="text/javascript" charset="utf-8" src="validar.js"></script>
+	</head> 
+	<body>
+		<!-- mensagenzinha -->
+		<div id="modal" class="modal">
+			<div class="modal-content">
+				<header>
+					<h3 id="modal-title">Mensagem de erro</h3>
+					<span class="close" onclick="fechar()">&times;</span>
+				</header>
+				<p id="mensagem" style="margin:5% 5% 5% 5%"> texto texto texto texto</p>
+			</div>
+		</div>
+		<!-- div que pega tudo -->
+		<div id="wrapper">
+			<header>
+				<h1 id="titulo">Calculadora de Conversão de Bases</h1>
+			</header>
+			<div id="div_central">
+			
+			<!-- linha 1 -->
+				<div id="div_numero">
+					<label>Número</label>
+					<input id="numero" class="input" maxlength="25" type="text" onkeyup="validarCampo()">
+				</div>
+				
+				<div id="div_base1" class="div_base">
+					<label>Base</label>
+					<!-- select base 1 -->
+					<select id="base1" class="select">
+						<option value="Decimal">Decimal</option>
+						<option value="Binário">Binário</option>
+						<option value="Octal">Octal</option>
+						<option value="Hexadecimal">Hexadecimal</option>
+					</select>
+				</div>
+				<input id="calcular" type="button" value="Calcular" onclick="verificarNumero()">
+
+			<!-- linha 2 --> 
+				<div id="div_resultado">
+					<label>Resultado</label>
+					<input id="resultado" class="input" maxlength="30" type="text" readonly>
+				</div>
+				
+				<div id="div_base2"  class="div_base">
+					<label>Base</label>
+					<!-- select base 2 -->
+					<select id="base2" class="select" onfocus="focusBase()" onchange="mudou = 1;verificarNumero()">
+						<option value="Decimal">Decimal</option>
+						<option value="Binário">Binário</option>
+						<option value="Octal">Octal</option>
+						<option value="Hexadecimal">Hexadecimal</option>
+					</select>
+				</div>
+			<!-- link do "como" --> 
+				<a id="como" target="_blank" href="http://producao.virtual.ufpb.br/books/camyle/introducao-a-computacao-livro/livro/livro.chunked/ch03s03.html">Quer saber como é o cálculo?</a>
+			</div>
+		</div>
+		<script>
+			var modal = document.getElementById('modal');
+			var mudou = 0;
+			var oldValue = null;
+			function validarCampo()
+			{
+				var numero = document.getElementById('numero').value;
+				numero = numero.toUpperCase();
+				document.getElementById('numero').value = numero;
+			}
+			function mostrar()
+			{
+				document.getElementById('modal').style.display = "block";
+			}
+			
+			function fechar()
+			{
+				document.getElementById('modal').style.display = "none";
+			}
+			
+			window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+}
+		</script>
+		<footer>Desenvolvido por Guilherme Barbosa Pereira - Contato: guilherme.barbosapereira@outlook.com </footer>
+	</body>
+
+</html>
